@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Futsal Arena</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #080b0a;
+    color: white;
+    line-height: 1.6;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* NAVBAR */
+header {
+    position: absolute;
+    width: 100%;
+    z-index: 10;
+}
+
+.navbar {
+    max-width: 1200px;
+    margin: auto;
+    padding: 25px 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    font-size: 22px;
+    font-weight: 900;
+}
+
+.logo span,
+.hero h1 span,
+.about-content span,
+.facilities span,
+.price span {
+    color: #b7ff00;
+}
+
+.nav-menu {
+    display: flex;
+    gap: 30px;
+    list-style: none;
+}
+
+.nav-menu a {
+    font-size: 14px;
+    transition: .3s;
+}
+
+.nav-menu a:hover {
+    color: #b7ff00;
+}
+
+.btn {
+    display: inline-block;
+    padding: 13px 25px;
+    background: #b7ff00;
+    color: #080b0a;
+    font-weight: bold;
+    border-radius: 5px;
+    transition: .3s;
+}
+
+.btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px #b7ff0040;
+}
+
+.btn-outline {
+    display: inline-block;
+    padding: 12px 24px;
+    border: 1px solid #ffffff60;
+    border-radius: 5px;
+}
+
+/* HERO */
+.hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 120px 8%;
+    background:
+        linear-gradient(90deg, #080b0a 15%, #080b0acc 50%, #080b0a55),
+        url("https://images.unsplash.com/photo-1553778263-73a83bab9b0c?auto=format&fit=crop&w=1600&q=80")
+        center/cover;
+}
+
+.hero-content {
+    max-width: 650px;
+}
+
+.subtitle,
+.section-label {
+    color: #b7ff00;
+    font-size: 13px;
+    font-weight: bold;
+    letter-spacing: 3px;
+    margin-bottom: 15px;
+}
+
+.hero h1 {
+    font-size: clamp(50px, 8vw, 95px);
+    line-height: .95;
+    margin-bottom: 25px;
+    font-weight: 900;
+}
+
+.hero p {
+    color: #cccccc;
+    max-width: 520px;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+/* ABOUT */
+.about {
+    max-width: 1200px;
+    margin: auto;
+    padding: 100px 30px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 70px;
+    align-items: center;
+}
+
+.about-image {
+    height: 450px;
+    background:
+        url("https://images.unsplash.com/photo-1517466787929-bc90951d0974?auto=format&fit=crop&w=900&q=80")
+        center/cover;
+    border-radius: 10px;
+}
+
+.about-content h2,
+.facilities h2,
+.price h2,
+.booking h2 {
+    font-size: 45px;
+    line-height: 1.1;
+    margin-bottom: 20px;
+}
+
+.about-content > p {
+    color: #aaa;
+}
+
+.stats {
+    display: flex;
+    gap: 50px;
+    margin-top: 35px;
+}
+
+.stats h3 {
+    color: #b7ff00;
+    font-size: 30px;
+}
+
+.stats p {
+    color: #999;
+}
+
+/* FASILITAS */
+.facilities,
+.price {
+    text-align: center;
+    padding: 100px 30px;
+    background: #0d1210;
+}
+
+.facility-container {
+    max-width: 1200px;
+    margin: 50px auto 0;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+.card {
+    padding: 35px 20px;
+    background: #151b18;
+    border: 1px solid #ffffff0d;
+    border-radius: 10px;
+    transition: .3s;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    border-color: #b7ff00;
+}
+
+.icon {
+    font-size: 40px;
+    margin-bottom: 15px;
+}
+
+.card p {
+    color: #999;
+    font-size: 14px;
+}
+
+/* HARGA */
+.price-container {
+    max-width: 700px;
+    margin: 50px auto 0;
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+}
+
+.price-card {
+    position: relative;
+    background: #151b18;
+    padding: 40px;
+    width: 300px;
+    border-radius: 10px;
+    border: 1px solid #ffffff15;
+}
+
+.price-card.popular {
+    border: 2px solid #b7ff00;
+}
+
+.price-number {
+    font-size: 30px;
+    font-weight: bold;
+    margin: 15px 0;
+}
+
+.price-number small {
+    font-size: 13px;
+    color: #999;
+}
+
+.price-card > p:not(.price-number) {
+    color: #999;
+    margin-bottom: 25px;
+}
+
+.badge {
+    position: absolute;
+    top: -13px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #b7ff00;
+    color: #000;
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: bold;
+}
+
+/* BOOKING */
+.booking {
+    max-width: 1200px;
+    margin: auto;
+    padding: 90px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.booking p {
+    color: #999;
+}
+
+/* FOOTER */
+footer {
+    padding: 50px 30px;
+    text-align: center;
+    background: #050706;
+}
+
+footer p {
+    color: #777;
+    margin-top: 8px;
+}
+
+/* RESPONSIVE */
+@media (max-width: 800px) {
+    .nav-menu {
+        display: none;
+    }
+
+    .navbar .btn {
+        display: none;
+    }
+
+    .hero {
+        padding: 120px 25px 80px;
+    }
+
+    .about {
+        grid-template-columns: 1fr;
+        gap: 35px;
+    }
+
+    .about-image {
+        height: 300px;
+    }
+
+    .facility-container {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .booking {
+        flex-direction: column;
+        gap: 30px;
+        text-align: center;
+    }
+}
+
+@media (max-width: 500px) {
+    .facility-container,
+    .price-container {
+        grid-template-columns: 1fr;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .price-card {
+        width: 100%;
+        max-width: 320px;
+    }
+
+    .hero h1 {
+        font-size: 55px;
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+    }
+
+    .hero-buttons a {
+        text-align: center;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<nav class="navbar">
+    <div class="logo">⚽ FUTSAL<span>ARENA</span></div>
+
+    <ul class="nav-menu">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#tentang">Tentang</a></li>
+        <li><a href="#fasilitas">Fasilitas</a></li>
+        <li><a href="#harga">Harga</a></li>
+        <li><a href="#kontak">Kontak</a></li>
+    </ul>
+
+    <a href="#booking" class="btn">Booking Sekarang</a>
+</nav>
+</header>
+
+<section class="hero" id="home">
+    <div class="hero-content">
+        <p class="subtitle">WELCOME TO FUTSAL ARENA</p>
+
+        <h1>
+            MAIN FUTSAL.<br>
+            <span>JADI JUARA.</span>
+        </h1>
+
+        <p>
+            Lapangan futsal nyaman dan berkualitas untuk latihan,
+            pertandingan, maupun bermain bersama teman.
+        </p>
+
+        <div class="hero-buttons">
+            <a href="#booking" class="btn">Booking Lapangan</a>
+            <a href="#tentang" class="btn-outline">Lihat Selengkapnya</a>
+        </div>
+    </div>
+</section>
+
+<section class="about" id="tentang">
+    <div class="about-image"></div>
+
+    <div class="about-content">
+        <p class="section-label">TENTANG KAMI</p>
+
+        <h2>
+            Tempat Seru Untuk<br>
+            <span>Pecinta Futsal</span>
+        </h2>
+
+        <p>
+            Futsal Arena menyediakan lapangan berkualitas dengan
+            fasilitas lengkap dan suasana nyaman. Cocok untuk bermain
+            bersama teman, komunitas, maupun mengadakan turnamen.
+        </p>
+
+        <div class="stats">
+            <div>
+                <h3>3+</h3>
+                <p>Lapangan</p>
+            </div>
+
+            <div>
+                <h3>500+</h3>
+                <p>Member</p>
+            </div>
+
+            <div>
+                <h3>5★</h3>
+                <p>Rating</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="facilities" id="fasilitas">
+    <p class="section-label">FASILITAS</p>
+
+    <h2>
+        Fasilitas <span>Terbaik</span>
+    </h2>
+
+    <div class="facility-container">
+
+        <div class="card">
+            <div class="icon">🏟️</div>
+            <h3>Lapangan Berkualitas</h3>
+            <p>
+                Lapangan nyaman dengan permukaan berkualitas
+                untuk permainan terbaik.
+            </p>
+        </div>
+
+        <div class="card">
+            <div class="icon">💡</div>
+            <h3>Penerangan Terang</h3>
+            <p>
+                Pencahayaan maksimal untuk bermain dengan nyaman
+                hingga malam hari.
+            </p>
+        </div>
+
+        <div class="card">
+            <div class="icon">🚿</div>
+            <h3>Ruang Ganti</h3>
+            <p>
+                Ruang ganti dan kamar mandi bersih untuk
+                kenyamanan pemain.
+            </p>
+        </div>
+
+        <div class="card">
+            <div class="icon">🅿️</div>
+            <h3>Parkir Luas</h3>
+            <p>
+                Area parkir luas dan aman untuk kendaraan pengunjung.
+            </p>
+        </div>
+
+    </div>
+</section>
+
+<section class="price" id="harga">
+    <p class="section-label">HARGA SEWA</p>
+
+    <h2>
+        Pilih Paket <span>Favoritmu</span>
+    </h2>
+
+    <div class="price-container">
+
+        <div class="price-card">
+            <h3>Siang</h3>
+
+            <p class="price-number">
+                Rp80K <small>/ jam</small>
+            </p>
+
+            <p>08.00 - 16.00</p>
+
+            <a href="#booking" class="btn">Booking</a>
+        </div>
+
+        <div class="price-card popular">
+            <div class="badge">POPULER</div>
+
+            <h3>Malam</h3>
+
+            <p class="price-number">
+                Rp120K <small>/ jam</small>
+            </p>
+
+            <p>16.00 - 23.00</p>
+
+            <a href="#booking" class="btn">Booking</a>
+        </div>
+
+    </div>
+</section>
+
+<section class="booking" id="booking">
+    <div>
+        <p class="section-label">BOOKING</p>
+        <h2>Siap Bermain?</h2>
+        <p>Amankan jadwal bermainmu sekarang!</p>
+    </div>
+
+    <a href="https://wa.me/6281234567890" class="btn">
+        Booking via WhatsApp
+    </a>
+</section>
+
+<footer id="kontak">
+    <div class="logo">
+        ⚽ FUTSAL<span>ARENA</span>
+    </div>
+
+    <p>📍 Jl. Futsal No. 10, Bandung</p>
+    <p>📞 0812-3456-7890</p>
+    <p>© 2026 Futsal Arena. All Rights Reserved.</p>
+</footer>
+
+</body>
+</html>
